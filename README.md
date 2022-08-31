@@ -9,6 +9,7 @@ Special made for a Raspberry Pi 4, see [Q-engineering deep learning examples](ht
 ## Dependencies.
 To run the application, you have to:
 - A raspberry Pi 4 with a 64-bit _**Bullseye**_ operating system. <br/>
+- Raspbian's libcamera-apps source code installed (```$ sudo apt install libcamera-dev```)
 - The Tencent ncnn framework installed. [Install ncnn](https://qengineering.eu/install-ncnn-on-raspberry-pi-4.html) <br/>
 - OpenCV 64 bit installed. [Install OpenCV 4.5](https://qengineering.eu/install-opencv-4.5-on-raspberry-64-os.html) <br/>
 - Code::Blocks installed. (```$ sudo apt-get install codeblocks```)
@@ -19,37 +20,43 @@ To run the application, you have to:
 To extract and run the network in Code::Blocks <br/>
 $ mkdir *MyDir* <br/>
 $ cd *MyDir* <br/>
-$ wget https://github.com/Qengineering/YoloV7-ncnn-Raspberry-Pi-4/archive/refs/heads/main.zip <br/>
-$ unzip -j master.zip <br/>
+$ wget https://github.com/Qengineering/Traffic-Counter-RPi_64-bit/archive/refs/heads/main.zip <br/>
+$ unzip -j main.zip <br/>
 Remove master.zip, LICENSE and README.md as they are no longer needed. <br/> 
-$ rm master.zip <br/>
+$ rm main.zip <br/>
 $ rm LICENSE <br/>
 $ rm README.md <br/> <br/>
 Your *MyDir* folder must now look like this: <br/> 
-parking.jpg <br/>
-busstop.jpg <br/>
-YoloV7.cpb <br/>
-yolo.cpp <br/>
-yolo.h <br/>
+Traffic.mp4 <br/>
+TrafficTracking.cpb <br/>
+**src** folder <br/>
+**include** folder <br/>
 yoloV7main.cpp <br/>
-yolov7-tiny.bin <br/>
-yolov7-tiny.param <br/>
+nanodet_m.bin <br/>
+nanodet_m.param <br/>
 
 ------------
 
 ## Running the app.
-To run the application load the project file YoloV7.cbp in Code::Blocks. More info or<br/> 
-if you want to connect a camera to the app, follow the instructions at [Hands-On](https://qengineering.eu/deep-learning-examples-on-raspberry-32-64-os.html#HandsOn).<br/><br/>
+To run the application load the project file TrafficTracking.cbp in Code::Blocks.<br>
+We [overclocked](https://qengineering.eu/overclocking-the-raspberry-pi-4.html) our Raspberry Pi 4 to 1950MHz to get the highest FPS.<br>
+As usual, ensure good cooling!<br>
 
 ------------
 
-### Dynamic sizes.
-YoloV7 can handle different input resolutions without changing the deep learning model.<br/>
-On line 28 of `yolov7main.cpp` you can change the `target_size` (default 640).<br/>
-Decreasing the size to say 412 will speed up the inference time. On the other hand, the resizing makes the image less detailed; the model will no longer detect all objects.<br/><br/>
+## Camera.
+If you want to run the app with a camera you have to uncomment line 18 in `traffictrack.cpp` and recompile the software.
+```
+#define CAMERA
+```
+We use the Bullseye [LCCV camera](https://github.com/Qengineering/LCCV) code because it is a feather-light camera code leaving most of the computer time for deep learning calculations.
 
-Many thanks to [nihui](https://github.com/nihui/) and [Xiang Shin Wuu](https://github.com/xiang-wuu)<br/><br/>
-![output image]( https://qengineering.eu/images/BusstopYoloV7.jpg )
+------------
+
+## Final remark.
+It's a lot of room for improvement. The current NanoDet model has been trained with the COCO set. In everyday use, you don't need all 80 classes when monitoring traffic. Only a few classes could do that. It makes the model faster and more accurate.<br>
+Another improvement could be the tracker. Here we use the [Byte Tracking](https://github.com/Qengineering/NanoDet-Tracking-ncnn-RPi_64-bit).
+Because only traffic moves to or from the camera, tracking can be simplified. And on the other hand be more robust. As you will experience, traffic towards the camera is harder to detect than traffic driving away.<br>
 
 ------------
 

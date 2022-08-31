@@ -1,6 +1,6 @@
 # Traffic counter Raspberry Pi 4
 ![output image]( https://qengineering.eu/images/TrafficRpi64.webp )
-## Traffic counter with camera on a bare Raspberry Pi 4. <br/>
+## Traffic counter with a camera on a bare Raspberry Pi 4. <br/>
 [![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)<br/><br/>
 Special made for a Raspberry Pi 4, see [Q-engineering deep learning examples](https://qengineering.eu/deep-learning-examples-on-raspberry-32-64-os.html)
 

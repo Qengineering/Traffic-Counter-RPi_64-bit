@@ -23,10 +23,6 @@ $ mkdir *MyDir* <br/>
 $ cd *MyDir* <br/>
 $ wget https://github.com/Qengineering/Traffic-Counter-RPi_64-bit/archive/refs/heads/main.zip <br/>
 $ unzip -j main.zip <br/>
-Remove master.zip, LICENSE and README.md as they are no longer needed. <br/> 
-$ rm main.zip <br/>
-$ rm LICENSE <br/>
-$ rm README.md <br/> <br/>
 Your *MyDir* folder must now look like this: <br/> 
 ```
 .

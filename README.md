@@ -28,13 +28,34 @@ $ rm main.zip <br/>
 $ rm LICENSE <br/>
 $ rm README.md <br/> <br/>
 Your *MyDir* folder must now look like this: <br/> 
-Traffic.mp4 <br/>
-TrafficTracking.cpb <br/>
-**src** folder <br/>
-**include** folder <br/>
-yoloV7main.cpp <br/>
-nanodet_m.bin <br/>
-nanodet_m.param <br/>
+```
+.
+├── include
+│   ├── BYTETracker.h
+│   ├── dataType.h
+│   ├── kalmanFilter.h
+│   ├── lapjv.h
+│   ├── lccv.hpp
+│   ├── libcamera_app.hpp
+│   ├── libcamera_app_options.hpp
+│   └── STrack.h
+├── LICENSE
+├── nanodet_m.bin
+├── nanodet_m.param
+├── README.md
+├── src
+│   ├── BYTETracker.cpp
+│   ├── kalmanFilter.cpp
+│   ├── lapjv.cpp
+│   ├── lccv.cpp
+│   ├── libcamera_app.cpp
+│   ├── libcamera_app_options.cpp
+│   ├── STrack.cpp
+│   ├── traffictrack.cpp
+│   └── utils.cpp
+├── Traffic.mp4
+└── TrafficTracking.cbp
+```
 
 ------------
 

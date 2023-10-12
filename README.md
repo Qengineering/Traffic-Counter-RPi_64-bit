@@ -2,17 +2,17 @@
 ![output image]( https://qengineering.eu/images/TrafficRpi64.webp )
 ## Traffic counter with a camera on a bare Raspberry Pi 4. <br/>
 [![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)<br/><br/>
-Special made for a Raspberry Pi 4, see [Q-engineering deep learning examples](https://qengineering.eu/deep-learning-examples-on-raspberry-32-64-os.html)<br>
+Specially made for a Raspberry Pi 4, see [Q-engineering deep learning examples](https://qengineering.eu/deep-learning-examples-on-raspberry-32-64-os.html)<br>
 See [YouTube movie](https://youtu.be/kLo0sFx-sVA).<br>
 
 ------------
 
 ## Dependencies.
 To run the application, you have to:
-- A raspberry Pi 4 with a 64-bit _**Bullseye**_ operating system. <br/>
+- A Raspberry Pi 4 with a 64-bit _**Bullseye**_ operating system. <br/>
 - Raspbian's libcamera-apps source code installed (```$ sudo apt install libcamera-dev```)
 - The Tencent ncnn framework installed. [Install ncnn](https://qengineering.eu/install-ncnn-on-raspberry-pi-4.html) <br/>
-- OpenCV 64 bit installed. [Install OpenCV 4.5](https://qengineering.eu/install-opencv-4.5-on-raspberry-64-os.html) <br/>
+- OpenCV 64-bit installed. [Install OpenCV 4.5](https://qengineering.eu/install-opencv-4.5-on-raspberry-64-os.html) <br/>
 - Code::Blocks installed. (```$ sudo apt-get install codeblocks```)
 
 ------------
@@ -74,7 +74,7 @@ We use the Bullseye [LCCV camera](https://github.com/Qengineering/LCCV) code bec
 ## Final remark.
 It's a lot of room for improvement. The current NanoDet model has been trained with the COCO set. In everyday use, you don't need all 80 classes when monitoring traffic. Only a few classes could do that. It makes the model faster and more accurate.<br>
 Another improvement could be the tracker. Here we use the [Byte Tracking](https://github.com/Qengineering/NanoDet-Tracking-ncnn-RPi_64-bit).
-Because only traffic moves to or from the camera, tracking can be simplified. And on the other hand be more robust. As you will experience, traffic towards the camera is harder to detect than traffic driving away.<br>
+Because only traffic moves to or from the camera, tracking can be simplified. And on the other hand, be more robust. As you will experience, traffic towards the camera is harder to detect than traffic driving away.<br>
 
 ------------
 

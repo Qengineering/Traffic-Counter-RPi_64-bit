@@ -32,28 +32,28 @@ To run the application, you have to:
 
 ### Installing the dependencies.
 Start with the usual 
-```
+```shell
 $ sudo apt-get update 
 $ sudo apt-get upgrade
 $ sudo apt-get install curl libcurl4
 $ sudo apt-get install cmake wget
 ```
 #### Libcamera
-```
+```shell
 $ sudo apt-get install libcamera-dev
 ```
 #### OpenCV
 Follow the Raspberry Pi 4 [guide](https://qengineering.eu/install-opencv-on-raspberry-64-os.html). Or:
-```
+```shell
 $ sudo apt-get install libopencv-dev
 ```
 #### gflags
-```
+```shell
 $ sudo apt-get install libgflags-dev
 ```
 #### JSON for C++
 written by [Niels Lohmann](https://github.com/nlohmann).
-```
+```shell
 $ cd ~
 $ git clone --depth=1 https://github.com/nlohmann/json.git
 $ cd json
@@ -65,7 +65,7 @@ $ sudo make install
 $ sudo ldconfig
 ```
 #### paho.mqtt (MQTT client)
-```
+```shell
 $ cd ~
 $ git clone --depth=1 https://github.com/eclipse/paho.mqtt.c.git
 $ cd paho.mqtt.c
@@ -77,7 +77,7 @@ $ sudo make install
 $ sudo ldconfig
 ```
 #### Mosquitto (MQTT broker)
-```
+```shell
 $ sudo apt-get install mosquitto
 ```
 
@@ -146,7 +146,7 @@ You can use **Code::Blocks**.
 - You can alter command line arguments with _Project -> Set programs arguments..._ 
 
 Or use **Cmake**.
-```
+```shell
 $ cd *MyDir*
 $ mkdir build
 $ cd build
@@ -220,41 +220,39 @@ You can alter these to your liking. Please note the use of commas after each lin
 ------------
 
 ## Debug.
-You can use debug mode to determine the best position for the borderline.<br>
-Start the app with the flag debug set.<br>
-```
+You can use debug mode to find the optimal position for the borderline.<br> 
+To enable debug mode, start the app with the --debug flag set to true:<br>
+```shell
 ./Traffic --debug=true
 ```
-Or alter command line argument in Code::Blocks with _Project -> Set programs arguments..._ <br>
-Now you see the tails of every vehicle. Once the tail crosses the imaginary borderline, the car is added.<br>
-At the same time, the bounding box is filled. A convenient way to determine the missed vehicles.<br>
-
+Alternatively, you can modify the command line argument in Code::Blocks by navigating to Project -> Set programs arguments...<br> 
+In debug mode, you’ll see the tail of each vehicle. When a vehicle’s tail crosses the imaginary borderline, it is added to the count.<br> 
+At this point, the bounding box is highlighted, which helps in identifying any missed vehicles.<br><br>
 
 https://github.com/user-attachments/assets/4b67bebb-af1f-4edd-9ba6-c8217ecdcf56
 
 ------------
 
 ## MQTT messages.
-You can receive the MQTT messages locally at `localhost:1883`. It is the default setting. Messages are printed on the terminal.<br>
-However, when connected to the internet, you can send the MQTT messages to any broker you like. For instance `broker.hivemq.com:1883`.<br>
-The app sends messages only when the `MQTT_ON` setting is set to `true`. The refresh rate in seconds is given by the `MESSAGE_TIME`<br>
-At midnight all cumulative counts are reset.<br><br>
-You can follow the messages in a web browser also. To do so, give the port number after the IP address of your Rpi.<br><br>
+You can receive MQTT messages locally at localhost:1883, the default setting. Messages are printed to the terminal.<br> 
+When connected to the internet, you can send MQTT messages to any broker you choose, such as broker.hivemq.com:1883.<br> 
+The app only sends messages when the MQTT_ON setting is set to true. The refresh rate, in seconds, is determined by MESSAGE_TIME.<br> 
+At midnight, all cumulative counts are reset.<br><br> 
+You can also follow the messages in a web browser. To do so, enter the port number after the IP address of your Raspberry Pi.<br><br>
 ![2024-11-11 15_22_51-192 168 178 87_8070 - Brave](https://github.com/user-attachments/assets/36d9ffcc-c66d-4da2-adaa-cbd45d19b6d6)
 
 ------------
 
 ## Preview.
-With the Raspberry Pi connected to the internet, you can watch the live footage in a browser.<br>
-The combination of the Rpi address with the `MJPEG_PORT` number given in the settings shows the camera images.<br><br>
+If your Raspberry Pi is connected to the internet, you can view live footage in a browser.<br>
+Simply combine the Raspberry Pi’s IP address with the MJPEG_PORT number specified in the settings to access the camera feed.<br><br>
 ![2024-11-11 15_21_32-192 168 178 87_8090 - Brave](https://github.com/user-attachments/assets/567fed46-b240-4450-b3d2-f5a07471f88d)
 
 ------------
 
 ## LCCV.
-We use the Bullseye [LCCV camera](https://github.com/Qengineering/LCCV) code because it is a feather-light camera code leaving most of the computer time for deep learning calculations.
-However, if you like to use GStreamer instead, you can build the application with the flag LCCV `off`.
-```
+We use the Bullseye [LCCV camera](https://github.com/Qengineering/LCCV) code, which is a lightweight camera solution that leaves most computing resources available for deep learning tasks.<br> If you prefer to use GStreamer, you can build the application with the LCCV flag set to OFF:
+```shell
 $ cd *MyDir*
 $ mkdir build
 $ cd build
@@ -265,9 +263,7 @@ $ make -j4
 ------------
 
 ## Final remark.
-It's a lot of room for improvement. The current NanoDet model has been trained with the COCO set. In everyday use, you don't need all 80 classes when monitoring traffic. Only a few classes could do that. It makes the model faster and more accurate.<br>
-Another improvement could be the tracker. Here we use the [Byte Tracking](https://github.com/Qengineering/NanoDet-Tracking-ncnn-RPi_64-bit).
-Because only traffic moves to or from the camera, tracking can be simplified. And on the other hand, be more robust. As you will experience, traffic towards the camera is harder to detect than traffic driving away.<br>
+There is plenty of room for improvement. The most obvious upgrade would be adding more computing power. The network used is very lightweight. We’ve also published this application for the Rock 5C, an affordable ($60) device with an NPU. With this setup, you’ll immediately see the impact of using a more powerful DNN model.
 
 ------------
 

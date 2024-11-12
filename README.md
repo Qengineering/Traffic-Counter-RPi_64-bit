@@ -3,27 +3,88 @@
 ## Traffic counter with a camera on a bare Raspberry Pi 4. <br/>
 [![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)<br/><br/>
 Specially made for a Raspberry Pi 4, see [Q-engineering deep learning examples](https://qengineering.eu/deep-learning-examples-on-raspberry-32-64-os.html)<br>
-See [YouTube movie](https://youtu.be/kLo0sFx-sVA).<br>
+
+------------
+
+## Introduction.
+A fully functional traffic counter with a camera working on a bare Raspberry Pi 4.
+Highlights:
+- Stand alone.
+- Lane selection.
+- MQTT messages.
+- JSON messages.
+- Live web viewer.
+- JSON settings.
+- RTSP CCTV streaming.
+- Debug screens.
 
 ------------
 
 ## Dependencies.
 To run the application, you have to:
 - A Raspberry Pi 4 with a 64-bit _**Bullseye**_ operating system. <br/>
-- Raspbian's libcamera-apps source code installed (```$ sudo apt install libcamera-dev```)
 - The Tencent ncnn framework installed. [Install ncnn](https://qengineering.eu/install-ncnn-on-raspberry-pi-4.html) <br/>
-- OpenCV 64-bit installed. [Install OpenCV 4.5](https://qengineering.eu/install-opencv-4.5-on-raspberry-64-os.html) <br/>
-- Code::Blocks installed. (```$ sudo apt-get install codeblocks```)
+- Optional: Code::Blocks installed. (```$ sudo apt-get install codeblocks```)
+
+### Installing the dependencies.
+Start with the usual 
+```
+$ sudo apt-get update 
+$ sudo apt-get upgrade
+$ sudo apt-get install curl libcurl4
+$ sudo apt-get install cmake wget
+```
+#### Libcamera
+```
+$ sudo apt-get install libcamera-dev
+```
+#### OpenCV
+Follow the Raspberry Pi 4 [guide](https://qengineering.eu/install-opencv-on-raspberry-64-os.html). Or:
+```
+$ sudo apt-get install libopencv-dev
+```
+#### gflags
+```
+$ sudo apt-get install libgflags-dev
+```
+#### JSON for C++
+written by [Niels Lohmann](https://github.com/nlohmann).
+```
+$ cd ~
+$ git clone --depth=1 https://github.com/nlohmann/json.git
+$ cd json
+$ mkdir build
+$ cd build
+$ cmake ..
+$ make -j4
+$ sudo make install
+$ sudo ldconfig
+```
+#### paho.mqtt (MQTT client)
+```
+$ cd ~
+$ git clone --depth=1 https://github.com/eclipse/paho.mqtt.c.git
+$ cd paho.mqtt.c
+$ mkdir build
+$ cd build
+$ cmake ..
+$ make -j4
+$ sudo make install
+$ sudo ldconfig
+```
+#### Mosquitto (MQTT broker)
+```
+$ sudo apt-get install mosquitto
+```
 
 ------------
 
 ## Installing the app.
-To extract and run the network in Code::Blocks <br/>
-$ mkdir *MyDir* <br/>
-$ cd *MyDir* <br/>
-$ wget https://github.com/Qengineering/Traffic-Counter-RPi_64-bit/archive/refs/heads/main.zip <br/>
-$ unzip -j main.zip <br/>
-Your *MyDir* folder must now look like this: <br/> 
+Download the software.<br/>
+```
+$ git clone https://github.com/Qengineering/Traffic-Counter-RPi_64-bit.git
+```
+Your folder must now look like this: <br/> 
 ```
 .
 ├── include

@@ -219,7 +219,18 @@ You can alter these to your liking. Please note the use of commas after each lin
 
 ------------
 
-## Camera.
+## Debug.
+You can use debug mode to determine the best position for the borderline.<br>
+Start the app with the flag debug set.<br>
+```
+./Traffic --debug=true
+```
+Or alter command line argument in Code::Blocks with _Project -> Set programs arguments..._ <br>
+Now you see the tails of every vehicle. Once the tail crosses the imaginary borderline, the car is added.<br>
+At the same time, the bounding box is filled. A convenient way to determine the missed vehicles.<br>
+
+
+
 If you want to run the app with a camera you have to uncomment line 18 in `traffictrack.cpp` and recompile the software.
 ```
 #define CAMERA

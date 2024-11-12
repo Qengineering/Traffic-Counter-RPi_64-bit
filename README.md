@@ -246,15 +246,21 @@ You can follow the messages in a web browser also. To do so, give the port numbe
 
 ## Preview.
 With the Raspberry Pi connected to the internet, you can watch the live footage in a browser.<br>
-The combination of the Rpi address with the `MJPEG_PORT` number given in the settings shows the camera images.<br>
+The combination of the Rpi address with the `MJPEG_PORT` number given in the settings shows the camera images.<br><br>
 ![2024-11-11 15_21_32-192 168 178 87_8090 - Brave](https://github.com/user-attachments/assets/567fed46-b240-4450-b3d2-f5a07471f88d)
 
+------------
 
-If you want to run the app with a camera you have to uncomment line 18 in `traffictrack.cpp` and recompile the software.
-```
-#define CAMERA
-```
+## LCCV.
 We use the Bullseye [LCCV camera](https://github.com/Qengineering/LCCV) code because it is a feather-light camera code leaving most of the computer time for deep learning calculations.
+However, if you like to use GStreamer instead, you can build the application with the flag LCCV `off`.
+```
+$ cd *MyDir*
+$ mkdir build
+$ cd build
+$ cmake -DLCCV=OFF ..
+$ make -j4
+```
 
 ------------
 

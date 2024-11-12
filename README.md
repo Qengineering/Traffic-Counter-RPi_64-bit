@@ -215,6 +215,10 @@ You can alter these to your liking. Please note the use of commas after each lin
 
 ------------
 
+![Screenshot from 2024-11-11 14-07-00](https://github.com/user-attachments/assets/492d8264-47e9-4437-abf0-f9c0a14778e2)
+
+------------
+
 ## Camera.
 If you want to run the app with a camera you have to uncomment line 18 in `traffictrack.cpp` and recompile the software.
 ```

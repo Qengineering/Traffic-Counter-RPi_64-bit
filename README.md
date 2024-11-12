@@ -247,6 +247,7 @@ You can follow the messages in a web browser also. To do so, give the port numbe
 ## Preview.
 With the Raspberry Pi connected to the internet, you can watch the live footage in a browser.<br>
 The combination of the Rpi address with the `MJPEG_PORT` number given in the settings shows the camera images.<br>
+![2024-11-11 15_21_32-192 168 178 87_8090 - Brave](https://github.com/user-attachments/assets/567fed46-b240-4450-b3d2-f5a07471f88d)
 
 
 If you want to run the app with a camera you have to uncomment line 18 in `traffictrack.cpp` and recompile the software.

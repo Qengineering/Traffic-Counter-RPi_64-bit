@@ -230,6 +230,9 @@ Now you see the tails of every vehicle. Once the tail crosses the imaginary bord
 At the same time, the bounding box is filled. A convenient way to determine the missed vehicles.<br>
 
 
+https://github.com/user-attachments/assets/4b67bebb-af1f-4edd-9ba6-c8217ecdcf56
+
+
 
 If you want to run the app with a camera you have to uncomment line 18 in `traffictrack.cpp` and recompile the software.
 ```

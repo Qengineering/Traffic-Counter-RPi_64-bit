@@ -238,10 +238,15 @@ https://github.com/user-attachments/assets/4b67bebb-af1f-4edd-9ba6-c8217ecdcf56
 You can receive the MQTT messages locally at `localhost:1883`. It is the default setting. Messages are printed on the terminal.<br>
 However, when connected to the internet, you can send the MQTT messages to any broker you like. For instance `broker.hivemq.com:1883`.<br>
 The app sends messages only when the `MQTT_ON` setting is set to `true`. The refresh rate in seconds is given by the `MESSAGE_TIME`<br>
-At midnight all cumulative counts are reset.<br>
-You can follow the messages in a web browser also. To do so, give the port number after the IP address of your Rpi.<br>
+At midnight all cumulative counts are reset.<br><br>
+You can follow the messages in a web browser also. To do so, give the port number after the IP address of your Rpi.<br><br>
 ![2024-11-11 15_22_51-192 168 178 87_8070 - Brave](https://github.com/user-attachments/assets/36d9ffcc-c66d-4da2-adaa-cbd45d19b6d6)
 
+------------
+
+## Preview.
+With the Raspberry Pi connected to the internet, you can watch the live footage in a browser.<br>
+The combination of the Rpi address with the `MJPEG_PORT` number given in the settings shows the camera images.<br>
 
 
 If you want to run the app with a camera you have to uncomment line 18 in `traffictrack.cpp` and recompile the software.

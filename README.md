@@ -240,6 +240,7 @@ However, when connected to the internet, you can send the MQTT messages to any b
 The app sends messages only when the `MQTT_ON` setting is set to `true`. The refresh rate in seconds is given by the `MESSAGE_TIME`<br>
 At midnight all cumulative counts are reset.<br>
 You can follow the messages in a web browser also. To do so, give the port number after the IP address of your Rpi.<br>
+![2024-11-11 15_22_51-192 168 178 87_8070 - Brave](https://github.com/user-attachments/assets/36d9ffcc-c66d-4da2-adaa-cbd45d19b6d6)
 
 
 

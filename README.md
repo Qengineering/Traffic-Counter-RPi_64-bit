@@ -20,6 +20,10 @@ Highlights:
 
 ------------
 
+https://github.com/user-attachments/assets/a64cc957-4965-4afb-9077-b37b1071c08a
+
+------------
+
 ## Dependencies.
 To run the application, you have to:
 - A Raspberry Pi 4 with a 64-bit _**Bullseye**_ operating system. <br/>

@@ -87,18 +87,29 @@ $ git clone https://github.com/Qengineering/Traffic-Counter-RPi_64-bit.git
 Your folder must now look like this: <br/> 
 ```
 .
+├── CMakeLists.txt
+├── config.json
 ├── include
 │   ├── BYTETracker.h
 │   ├── dataType.h
+│   ├── General.h
 │   ├── kalmanFilter.h
 │   ├── lapjv.h
 │   ├── lccv.hpp
 │   ├── libcamera_app.hpp
 │   ├── libcamera_app_options.hpp
-│   └── STrack.h
+│   ├── MJPG_sender.h
+│   ├── MJPGthread.h
+│   ├── MQTT.h
+│   ├── Numbers.h
+│   ├── STrack.h
+│   ├── Tjson.h
+│   ├── TMapper.h
+│   └── yolo-fastestv2.h
 ├── LICENSE
-├── nanodet_m.bin
-├── nanodet_m.param
+├── models
+│   ├── yolo-fastestv2-opt.bin
+│   └── yolo-fastestv2-opt.param
 ├── README.md
 ├── src
 │   ├── BYTETracker.cpp
@@ -107,11 +118,19 @@ Your folder must now look like this: <br/>
 │   ├── lccv.cpp
 │   ├── libcamera_app.cpp
 │   ├── libcamera_app_options.cpp
+│   ├── main.cpp
+│   ├── MJPG_sender.cpp
+│   ├── MJPGthread.cpp
+│   ├── MQTT.cpp
 │   ├── STrack.cpp
-│   ├── traffictrack.cpp
-│   └── utils.cpp
-├── Traffic.mp4
-└── TrafficTracking.cbp
+│   ├── Tjson.cpp
+│   ├── TMapper.cpp
+│   ├── utils.cpp
+│   └── yolo-fastestv2.cpp
+├── Traffic.cbp
+└── Traffic.mp4
+
+3 directories, 39 files
 ```
 
 ------------

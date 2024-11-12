@@ -71,7 +71,7 @@
 		<Unit filename="include/MJPGthread.h" />
 		<Unit filename="include/MQTT.h" />
 		<Unit filename="include/STrack.h" />
-		<Unit filename="include/TMapper.h" />
+		<Unit filename="include/TChannel.h" />
 		<Unit filename="include/Tjson.h" />
 		<Unit filename="include/dataType.h" />
 		<Unit filename="include/kalmanFilter.h" />
@@ -85,7 +85,7 @@
 		<Unit filename="src/MJPGthread.cpp" />
 		<Unit filename="src/MQTT.cpp" />
 		<Unit filename="src/STrack.cpp" />
-		<Unit filename="src/TMapper.cpp" />
+		<Unit filename="src/TChannel.cpp" />
 		<Unit filename="src/Tjson.cpp" />
 		<Unit filename="src/kalmanFilter.cpp" />
 		<Unit filename="src/lapjv.cpp" />

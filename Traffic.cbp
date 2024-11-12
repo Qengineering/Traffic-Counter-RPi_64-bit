@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="Traffic" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/Traffic" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/Traffic" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Option parameters="--debug=false" />
+				<Compiler>
+					<Add option="-O3" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-pedantic" />
+			<Add option="-Wfatal-errors" />
+			<Add option="-Wextra" />
+			<Add option="-Wall" />
+			<Add option="-std=gnu++17" />
+			<Add option="-fopenmp" />
+			<Add option="-fexceptions" />
+			<Add option="-pthread" />
+			<Add option="-ftree-vectorize" />
+			<Add option="-Wno-unused-parameter" />
+			<Add option="-faligned-new" />
+			<Add option="`pkg-config --cflags opencv4`" />
+			<Add option="-DCAMERA" />
+			<Add directory="include" />
+			<Add directory="/usr/local/include/ncnn" />
+			<Add directory="/usr/local/include/eigen3/" />
+			<Add directory="/usr/include/libcamera" />
+		</Compiler>
+		<Linker>
+			<Add option="-O3" />
+			<Add option="-fopenmp" />
+			<Add option="-ldl" />
+			<Add option="-lpthread" />
+			<Add option="-pthread" />
+			<Add option="-lgomp" />
+			<Add option="-DNDEBUG" />
+			<Add option="-rdynamic" />
+			<Add option="-lgflags" />
+			<Add option="`pkg-config --libs opencv4`" />
+			<Add library="/usr/local/lib/ncnn/libncnn.a" />
+			<Add library="/usr/lib/aarch64-linux-gnu/libcamera.so" />
+			<Add library="/usr/lib/aarch64-linux-gnu/libcamera-base.so" />
+			<Add library="/usr/local/lib/aarch64-linux-gnu/libpaho-mqtt3c.so" />
+		</Linker>
+		<Unit filename="config.json" />
+		<Unit filename="include/BYTETracker.h" />
+		<Unit filename="include/General.h" />
+		<Unit filename="include/MJPG_sender.h" />
+		<Unit filename="include/MJPGthread.h" />
+		<Unit filename="include/MQTT.h" />
+		<Unit filename="include/STrack.h" />
+		<Unit filename="include/TMapper.h" />
+		<Unit filename="include/Tjson.h" />
+		<Unit filename="include/dataType.h" />
+		<Unit filename="include/kalmanFilter.h" />
+		<Unit filename="include/lapjv.h" />
+		<Unit filename="include/lccv.hpp" />
+		<Unit filename="include/libcamera_app.hpp" />
+		<Unit filename="include/libcamera_app_options.hpp" />
+		<Unit filename="include/yolo-fastestv2.h" />
+		<Unit filename="src/BYTETracker.cpp" />
+		<Unit filename="src/MJPG_sender.cpp" />
+		<Unit filename="src/MJPGthread.cpp" />
+		<Unit filename="src/MQTT.cpp" />
+		<Unit filename="src/STrack.cpp" />
+		<Unit filename="src/TMapper.cpp" />
+		<Unit filename="src/Tjson.cpp" />
+		<Unit filename="src/kalmanFilter.cpp" />
+		<Unit filename="src/lapjv.cpp" />
+		<Unit filename="src/lccv.cpp" />
+		<Unit filename="src/libcamera_app.cpp" />
+		<Unit filename="src/libcamera_app_options.cpp" />
+		<Unit filename="src/main.cpp" />
+		<Unit filename="src/utils.cpp" />
+		<Unit filename="src/yolo-fastestv2.cpp" />
+		<Extensions />
+	</Project>
+</CodeBlocks_project_file>

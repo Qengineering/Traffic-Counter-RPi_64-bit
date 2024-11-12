@@ -1,0 +1,31 @@
+{
+    "VERSION": "1.0.0.0",
+
+    "MQTT_ON": true,
+    "MQTT_SERVER_example": "broker.hivemq.com:1883",
+    "MQTT_SERVER": "localhost:1883",
+    "MQTT_CLIENT_ID": "Arrow",
+    "MQTT_TOPIC": "traffic",
+    "DEVICE_NAME": "highway 12",
+    "ANNOTATE": true,
+
+    "STREAM_example1": "rtsp://admin:L231C865@192.168.178.41:554/stream1",
+    "STREAM_example2": "RaspiCam",
+    "STREAM": "Traffic.mp4",
+
+    "BORDER_X1": 10,
+    "BORDER_Y1": 300,
+    "BORDER_X2": 450,
+    "BORDER_Y2": 300,
+
+    "JSON_PORT": 8070,
+    "MJPEG_PORT": 8090,
+    "MJPEG_WIDTH": 640,
+    "MJPEG_HEIGHT": 480,
+
+    "MESSAGE_TIME": 2,
+
+    "PARAM_MODEL": "./models/yolo-fastestv2-opt.param",
+    "BIN_MODEL": "./models/yolo-fastestv2-opt.bin"
+}
+

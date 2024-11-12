@@ -132,6 +132,29 @@ Your folder must now look like this: <br/>
 
 3 directories, 39 files
 ```
+------------
+
+## Running the app.
+You can use **Code::Blocks**.
+- Load the project file *.cbp in Code::Blocks.
+- Select _Release_, not Debug.
+- Compile and run with F9.
+- You can alter command line arguments with _Project -> Set programs arguments..._ 
+
+Or use **Cmake**.
+```
+$ cd *MyDir*
+$ mkdir build
+$ cd build
+$ cmake ..
+$ make -j4
+```
+Make sure you use the model fitting your system.<br><br>
+
+More info or if you want to connect a camera to the app, follow the instructions at [Hands-On](https://qengineering.eu/deep-learning-examples-on-raspberry-32-64-os.html#HandsOn).<br/><br/>
+
+------------
+
 
 ------------
 

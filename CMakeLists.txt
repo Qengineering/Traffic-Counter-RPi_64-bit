@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED YES)
 
 # Option to define CAMERA flag
-option(CAMERA "Enable camera support" OFF)
+option(CAMERA "Enable camera support" ON)
 if(CAMERA)
     add_compile_definitions(CAMERA)
 endif()

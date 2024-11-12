@@ -1,21 +1,18 @@
 #pragma once
 
 #include "STrack.h"
-
-struct Object
-{
-    cv::Rect_<float> rect;
-    int label;
-    float prob;
-};
+#include "General.h"
+#include "yolo-fastestv2.h"
 
 class BYTETracker
 {
 public:
-	BYTETracker(int frame_rate = 30, int track_buffer = 30);
-	~BYTETracker();
+	BYTETracker(void);
+	~BYTETracker(void);
 
-	vector<STrack> update(const vector<Object>& objects);
+	void Init(int frame_rate = 30, int track_buffer = 30);
+
+	vector<bbox_t> update(vector<TargetBox>& objects);
 	Scalar get_color(int idx);
 
 private:
@@ -31,7 +28,7 @@ private:
 	vector<vector<float> > iou_distance(vector<STrack> &atracks, vector<STrack> &btracks);
 	vector<vector<float> > ious(vector<vector<float> > &atlbrs, vector<vector<float> > &btlbrs);
 
-	double lapjv(const vector<vector<float> > &cost, vector<int> &rowsol, vector<int> &colsol, 
+	double lapjv(const vector<vector<float> > &cost, vector<int> &rowsol, vector<int> &colsol,
 		bool extend_cost = false, float cost_limit = LONG_MAX, bool return_cost = true);
 
 private:
@@ -47,3 +44,4 @@ private:
 	vector<STrack> removed_stracks;
 	byte_kalman::KalmanFilter kalman_filter;
 };
+//----------------------------------------------------------------------------------

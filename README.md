@@ -200,54 +200,18 @@ You can alter these to your liking. Please note the use of commas after each lin
 | MQTT_TOPIC | MQTT topic. Default `traffic` |
 | DEVICE_NAME | Name of the camera, used in the MQTT messages. |
 | ANNOTATE | Show lines, boxes and numbers in live view. Default `true` |
-
-
-| STREAMS_NR | Number of used streams.<br>It can be images, folders, videos or (RTSP) streams, like CCTV cameras. |
-| STREAM_x | Define stream x. |
-| CAM_NAME | Name of the stream, used in messages. |
-| MJPEG_PORT | The current stream with the bounding boxes and the OCR outcome is shown at the set port number. |
-| MQTT_TOPIC | MQTT topic name. |
-| VIDEO_INPUT | Used input. In the example, you can give `video` or `IMOU`, as they are defined in the array. |
-| VIDEO_INPUTS_PARAMS | Array of input streams.<br>- If you give the keyword `image` ALPR will process only one picture.<br>- With the keyword `folder`, it will process all pictures (*.jpg, *.png, *.bmp) found in the specified folder.<br>- The keyword `pipe` will open the specified GStreamer pipeline.<br>- The keyword `pipe_hw` will open the specified GStreamer pipeline with hardware acceleration.<br>- The keyword `video` will open the specified video.<br>- If not one of these three predefined keywords, the software assumes a stream, like `IMOU` or `VIGI`.
-| `image` | Define the `image` location. |
-| `images` | Define the folder location where images are found. |
-| `video` | Define the `video` stream. |
-| `pipe` | Define the `pipeline` stream. |
-| `pipe_hw` | Define the `pipeline` with hardware acceleration stream.<br>It will **automatically selected** on the **Jetson** when the input is an mp4 video. Note, pause/continue will not work.|
-| `mp4` | Define the `video` stream and force the Jetson to use FFmpeg, pause/continue will work. |
-| `IMOU` | Define the `IMOU` stream. |
-| SYNC | `true` The video is played in time.<br>`false` The video is played as fast as possible.<br>The parameter is only used with the video input.|
-| CFS | Define the **C**aptured **F**rames per **S**econd.<br>The parameter is used for all input, except streams. |
-| LOOP |`true` The pictures or video are replayed when reaching the end.<br>`false` The sequence stops with the last image when finished. |
-| WORK_WIDTH | Width of the images |
-| WORK_HEIGHT | Height of the images.<br>**All** streams are resized to `WORK_WIDTH x WORK_HEIGHT` before being processed further. Smaller frames require less resources. Please don't make them too small, the characters of the license plate still need to be recognized. |
-| THUMB_WIDTH | Width to the individual thumbnail picture. |
-| THUMB_HEIGHT | Height to the individual thumbnail picture. |
-| JSON_PORT | The JSON message port number. In contrast to the MQTT messages containing only portal events, the JSON message describes the frame contents. |
-| MJPEG_PORT | The thumbnail overview with the bounding boxes and the OCR outcome is shown at the given port number. |
+| STREAM | The used input source.<br>It can be a video or a `RaspiCam`, or an RTSP stream, like CCTV cameras. |
+| BORDER_X1 | Left X position of the imaginary borderline. |
+| BORDER_Y1 | Left Y position of the imaginary borderline. |
+| BORDER_X2 | Right X position of the imaginary borderline. |
+| BORDER_Y2 | Right Y position of the imaginary borderline. |
+| JSON_PORT | The JSON message port number.|
+| MJPEG_PORT | The thumbnail browser overview. |
 | MJPEG_WIDTH | Thumbnail width |
 | MJPEG_HEIGHT | Thumbnail height |
-| PRINT_ON_CLI | Print the Yolo outcome to the terminal `true-false`. |
-| PRINT_ON_RENDER | Show the thumbnails on the screen `true-false`. |
-| PRINT_PLATE | Show the little license plate thumbnails on the bottom of the screen `true-false`. |
-| VEHICLE_MODEL | Location of the used Darknet model to detect the objects. |
-| LICENSE_MODEL | Location of the used Darknet license plate detection model. |
-| OCR_MODEL | Location of the used Darknet character recognition model. |
-| NR_CHARS_PLATE | Expected number of characters on a licence plate. |
-| PLATE_RATIO | Plate width/height ratio. To prevent too square plates are investigated. |
-| FoI_FOLDER | The location where the individual images are stored. Because every single frame is stored, it generates a **_massive_** bulk of data. `none` switches the storage off. |
-| VEHICLES_FOLDER | The location where the individual vehicles are stored. Because every vehicle is stored, it generates a **lot** of data. `none` disables the storage. |
-| PLATES_FOLDER  | The location where the individual license plate images are stored. `none` blocks the storage. |
-| PLATE_TEMPLATE | Templating the license plate. See the Wiki page [Templating](https://github.com/xactai/SCALPR-01.5/wiki/Templating). |
-| JSONS_FOLDER | The location where the JSON outcomes are stored. `none` prevents the storage. |
-| RENDERS_FOLDER | The location where the thumbnail overviews are stored. Like the FoI, it stores every frame, generating **_massive_** data. Give `none` if you don't want to use it.|
-| THRESHOLD_VERHICLE | Darknet recognition level of the vehicles. |
-| THRESHOLD_PLATE | Darknet recognition level of the license plates. |
-| THRESHOLD_OCR | Darknet recognition level of the OCR |
-
-To run the application load the project file TrafficTracking.cbp in Code::Blocks.<br>
-We [overclocked](https://qengineering.eu/overclocking-the-raspberry-pi-4.html) our Raspberry Pi 4 to 1950MHz to get the highest FPS.<br>
-As usual, ensure good cooling!<br>
+| MESSAGE_TIME | Define the interval between (MQTT) messages in seconds. Default 2. |
+| PARAM_MODEL | Used nccn DNN model (parameters). |
+| BIN_MODEL | Used nccn DNN model (weights). |
 
 ------------
 

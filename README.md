@@ -108,7 +108,7 @@ Your folder must now look like this: <br/>
 │   ├── Numbers.h
 │   ├── STrack.h
 │   ├── Tjson.h
-│   ├── TMapper.h
+│   ├── TChannel.h
 │   └── yolo-fastestv2.h
 ├── LICENSE
 ├── models
@@ -128,7 +128,7 @@ Your folder must now look like this: <br/>
 │   ├── MQTT.cpp
 │   ├── STrack.cpp
 │   ├── Tjson.cpp
-│   ├── TMapper.cpp
+│   ├── TChannel.cpp
 │   ├── utils.cpp
 │   └── yolo-fastestv2.cpp
 ├── Traffic.cbp
@@ -194,6 +194,14 @@ You can alter these to your liking. Please note the use of commas after each lin
 | Global parameter | Comment |
 | ----      | ---- |
 | VERSION   | Current version. |
+| MQTT_ON | Enable MQTT messages. 'true-false'. |
+| MQTT_SERVER | MQTT server. Default `localhost:1883` |
+| MQTT_CLIENT_ID | MQTT client ID. Default `Arrow` |
+| MQTT_TOPIC | MQTT topic. Default `traffic` |
+| DEVICE_NAME | Name of the camera, used in the MQTT messages. |
+| ANNOTATE | Show lines, boxes and numbers in live view. Default `true` |
+
+
 | STREAMS_NR | Number of used streams.<br>It can be images, folders, videos or (RTSP) streams, like CCTV cameras. |
 | STREAM_x | Define stream x. |
 | CAM_NAME | Name of the stream, used in messages. |
@@ -215,9 +223,6 @@ You can alter these to your liking. Please note the use of commas after each lin
 | WORK_HEIGHT | Height of the images.<br>**All** streams are resized to `WORK_WIDTH x WORK_HEIGHT` before being processed further. Smaller frames require less resources. Please don't make them too small, the characters of the license plate still need to be recognized. |
 | THUMB_WIDTH | Width to the individual thumbnail picture. |
 | THUMB_HEIGHT | Height to the individual thumbnail picture. |
-| MQTT_ON | Enable MQTT messages. 'true-false'. |
-| MQTT_SERVER | MQTT server. Default `localhost:1883` |
-| MQTT_CLIENT_ID | MQTT client ID. Default `Xinthe_parking` |
 | JSON_PORT | The JSON message port number. In contrast to the MQTT messages containing only portal events, the JSON message describes the frame contents. |
 | MJPEG_PORT | The thumbnail overview with the bounding boxes and the OCR outcome is shown at the given port number. |
 | MJPEG_WIDTH | Thumbnail width |

@@ -47,6 +47,10 @@ Follow the Raspberry Pi 4 [guide](https://qengineering.eu/install-opencv-on-rasp
 ```shell
 $ sudo apt-get install libopencv-dev
 ```
+#### Eigen3
+```shell
+$ sudo apt-get install libeigen3-dev
+```
 #### gflags
 ```shell
 $ sudo apt-get install libgflags-dev

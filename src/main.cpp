@@ -18,7 +18,7 @@
 #include "Tjson.h"
 #include "MQTT.h"
 #include "MJPGthread.h"
-#include "TMapper.h"
+#include "TChannel.h"
 #include <lccv.hpp>
 #include <chrono>
 #include <thread>
@@ -65,18 +65,18 @@ int handleMQTTControlMessages(void *context, char *topicName, int topicLen, MQTT
     return 1;
 }
 //----------------------------------------------------------------------------------
-void DrawFrame(cv::Mat &frame,const TMapper &Map,const vector<bbox_t> &OutputTracks)
+void DrawFrame(cv::Mat &frame,const TChannel &channel,const vector<bbox_t> &OutputTracks)
 {
     if(FLAGS_debug){
-        for(size_t i=0; i<Map.MapList.size(); i++){
-            if(Map.MapList[i].Tframe==FrameCnt){
-                Scalar s = Btrack.get_color(Map.MapList[i].Track);
-                if(Map.MapList[i].Tdone){
-                    rectangle(frame, Rect(Map.MapList[i].Box.l, Map.MapList[i].Box.t, Map.MapList[i].Box.r-Map.MapList[i].Box.l, Map.MapList[i].Box.b-Map.MapList[i].Box.t), s, -1);
+        for(size_t i=0; i<channel.MapList.size(); i++){
+            if(channel.MapList[i].Tframe==FrameCnt){
+                Scalar s = Btrack.get_color(channel.MapList[i].Track);
+                if(channel.MapList[i].Tdone){
+                    rectangle(frame, Rect(channel.MapList[i].Box.l, channel.MapList[i].Box.t, channel.MapList[i].Box.r-channel.MapList[i].Box.l, channel.MapList[i].Box.b-channel.MapList[i].Box.t), s, -1);
                 }
                 else {
-                    rectangle(frame, Rect(Map.MapList[i].Box.l, Map.MapList[i].Box.t, Map.MapList[i].Box.r-Map.MapList[i].Box.l, Map.MapList[i].Box.b-Map.MapList[i].Box.t), s, 2);
-                    line(frame, Point(Map.MapList[i].Box.a, Map.MapList[i].Box.b), Point(Map.MapList[i].Box_T0.a, Map.MapList[i].Box_T0.b), cv::Scalar(0, 0, 255), 2);
+                    rectangle(frame, Rect(channel.MapList[i].Box.l, channel.MapList[i].Box.t, channel.MapList[i].Box.r-channel.MapList[i].Box.l, channel.MapList[i].Box.b-channel.MapList[i].Box.t), s, 2);
+                    line(frame, Point(channel.MapList[i].Box.a, channel.MapList[i].Box.b), Point(channel.MapList[i].Box_T0.a, channel.MapList[i].Box_T0.b), cv::Scalar(0, 0, 255), 2);
                 }
             }
         }
@@ -96,8 +96,8 @@ void DrawFrame(cv::Mat &frame,const TMapper &Map,const vector<bbox_t> &OutputTra
 
     int p=0;
     for(int i=0; i<10; i++){
-        if(Map.CntAr[i]>0){
-            putText(frame, cv::format("%s = %i", class_names[i+1], Map.CntAr[i]),cv::Point(10,p*20+20),cv::FONT_HERSHEY_SIMPLEX, 0.6, cv::Scalar(0, 0, 255));
+        if(channel.CntAr[i]>0){
+            putText(frame, cv::format("%s = %i", class_names[i+1], channel.CntAr[i]),cv::Point(10,p*20+20),cv::FONT_HERSHEY_SIMPLEX, 0.6, cv::Scalar(0, 0, 255));
             p++;
         }
     }
@@ -111,7 +111,7 @@ int main(int argc, char** argv)
     int    Mcnt = 0;
     cv::Mat frame;
     MJPGthread *MJ=nullptr;
-    TMapper Map;
+    TChannel channel;
     cv::VideoCapture cap;
 
     // Parse the flags
@@ -145,7 +145,7 @@ int main(int argc, char** argv)
     cout << "Loaded JSON" << endl;
 
     //load p1 and p2 in the mapper
-    Map.Init();
+    channel.Init();
 
     //export MQTT environment
     setenv("MQTT_SERVER", Js.MQTT_Server.c_str(), 1);       // The third argument '1' specifies to overwrite if it already exists
@@ -232,9 +232,9 @@ int main(int argc, char** argv)
 
             vector<bbox_t> OutputTracks = Btrack.update(objects);
 
-            Map.Execute(OutputTracks);
+            channel.Execute(OutputTracks);
 
-            DrawFrame(frame, Map, OutputTracks);
+            DrawFrame(frame, channel, OutputTracks);
 
             // Check if 1 second has passed
             auto now = std::chrono::steady_clock::now();
@@ -253,7 +253,7 @@ int main(int argc, char** argv)
 
                 // Check if we must send a message
                 if(++Mcnt >= Js.MesSec){
-                    Map.SendMessage();
+                    channel.SendMessage();
                     Mcnt = 0;
                 }
 
@@ -263,7 +263,7 @@ int main(int argc, char** argv)
 
                 if (localTime.tm_hour == 0 && localTime.tm_min == 0) {
                     // Clear the array at midnight
-                    Map.ResetCntAr();
+                    channel.ResetCntAr();
                     // Wait a minute to avoid multiple clearings within the same minute
                     std::this_thread::sleep_for(std::chrono::minutes(1));
                 }

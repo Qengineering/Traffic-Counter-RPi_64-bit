@@ -255,12 +255,12 @@ Simply combine the Raspberry Pi’s IP address with the MJPEG_PORT number specif
 ------------
 
 ## LCCV.
-We use the Bullseye [LCCV camera](https://github.com/Qengineering/LCCV) code, which is a lightweight camera solution that leaves most computing resources available for deep learning tasks.<br> If you prefer to use GStreamer, you can build the application with the LCCV flag set to OFF:
+We use the Bullseye [LCCV camera](https://github.com/Qengineering/LCCV) code, which is a lightweight camera solution that leaves most computing resources available for deep learning tasks.<br> If you prefer to use GStreamer, you can build the application with the CAMERA flag set to OFF:
 ```shell
 $ cd *MyDir*
 $ mkdir build
 $ cd build
-$ cmake -DLCCV=OFF ..
+$ cmake -DCAMERA=OFF ..
 $ make -j4
 ```
 

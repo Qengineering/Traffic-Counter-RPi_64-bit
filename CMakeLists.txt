@@ -33,7 +33,7 @@ set(SRC_FILES
 		src/MJPGthread.cpp 
 		src/MQTT.cpp 
 		src/STrack.cpp 
-		src/TMapper.cpp 
+		src/TChannel.cpp 
 		src/Tjson.cpp 
 		src/kalmanFilter.cpp 
 		src/lapjv.cpp 

@@ -1,24 +1,32 @@
 #include "BYTETracker.h"
+#include "General.h"
 #include <fstream>
-
-BYTETracker::BYTETracker(int frame_rate, int track_buffer)
+//----------------------------------------------------------------------------------
+BYTETracker::BYTETracker(void)
 {
-	track_thresh = 0.25; //0.5;
-	high_thresh =0.4; //0.6;
-	match_thresh = 0.5; //0.8;
-
-	frame_id = 0;
-	max_time_lost = 6; //int(frame_rate / 30.0 * track_buffer);
-	cout << "Init ByteTrack!" << endl;
+	track_thresh = 0.4;
+	high_thresh = 0.6;
+	match_thresh = 0.8;
 }
-
+//----------------------------------------------------------------------------------
 BYTETracker::~BYTETracker()
 {
 }
-
-vector<STrack> BYTETracker::update(const vector<Object>& objects)
+//----------------------------------------------------------------------------------
+void BYTETracker::Init(int frame_rate, int track_buffer)
 {
+	track_thresh = 0.1;
+	high_thresh = 0.5;
+	match_thresh = 0.8;
 
+	frame_id = 0;
+	max_time_lost = int(frame_rate / 30.0 * track_buffer);
+	cout << "Init ByteTrack!" << endl;
+}
+//----------------------------------------------------------------------------------
+vector<bbox_t> BYTETracker::update(vector<TargetBox>& objects)
+{
+    vector<bbox_t> Bobjs;
 	////////////////// Step 1: Get detections //////////////////
 	this->frame_id++;
 	vector<STrack> activated_stracks;
@@ -43,22 +51,18 @@ vector<STrack> BYTETracker::update(const vector<Object>& objects)
 		for(size_t i = 0; i < objects.size(); i++){
             vector<float> tlbr_;
             tlbr_.resize(4);
-            tlbr_[0] = objects[i].rect.x;
-            tlbr_[1] = objects[i].rect.y;
-            tlbr_[2] = objects[i].rect.x + objects[i].rect.width;
-            tlbr_[3] = objects[i].rect.y + objects[i].rect.height;
 
-            float score = objects[i].prob;
+            tlbr_[0] = objects[i].x1;
+            tlbr_[1] = objects[i].y1;
+            tlbr_[2] = objects[i].x2;
+            tlbr_[3] = objects[i].y2;
 
-            STrack strack(STrack::tlbr_to_tlwh(tlbr_), score);
-            if (score >= track_thresh)
-            {
-                detections.push_back(strack);
-            }
-            else
-            {
-                detections_low.push_back(strack);
-            }
+            float score = objects[i].score;
+            int label   = objects[i].obj_id;
+
+			STrack strack(STrack::tlbr_to_tlwh(tlbr_), score, label);
+			if(score >= track_thresh)	detections.push_back(strack);
+			else        				detections_low.push_back(strack);
 		}
 	}
 
@@ -221,5 +225,19 @@ vector<STrack> BYTETracker::update(const vector<Object>& objects)
 			output_stracks.push_back(this->tracked_stracks[i]);
 		}
 	}
-	return output_stracks;
+
+    for(size_t i = 0; i < output_stracks.size(); i++) {
+        bbox_t B;
+        B.x       =output_stracks[i].tlwh[0];
+        B.y       =output_stracks[i].tlwh[1];
+        B.w       =output_stracks[i].tlwh[2];
+        B.h       =output_stracks[i].tlwh[3];
+        B.obj_id  =output_stracks[i].obj_id;
+        B.prob    =output_stracks[i].score;
+        B.track_id=output_stracks[i].track_id;
+        Bobjs.push_back(B);
+    }
+
+    return Bobjs;
 }
+//----------------------------------------------------------------------------------

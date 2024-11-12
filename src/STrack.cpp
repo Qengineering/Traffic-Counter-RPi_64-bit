@@ -1,6 +1,6 @@
 #include "STrack.h"
 
-STrack::STrack(vector<float> tlwh_, float score)
+STrack::STrack(vector<float> tlwh_, float score, int obj_id)
 {
 	_tlwh.resize(4);
 	_tlwh.assign(tlwh_.begin(), tlwh_.end());
@@ -17,6 +17,7 @@ STrack::STrack(vector<float> tlwh_, float score)
 	frame_id = 0;
 	tracklet_len = 0;
 	this->score = score;
+	this->obj_id = obj_id;
 	start_frame = 0;
 }
 
@@ -171,7 +172,7 @@ int STrack::next_id()
 {
 	static int _count = 0;
 	_count++;
-	return _count;
+	return (_count & 0x03FF);       //mod 1024
 }
 
 int STrack::end_frame()
